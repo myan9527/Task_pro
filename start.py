@@ -1,9 +1,6 @@
-from flask import Flask,render_template
+# Basic interface
+from flask import Flask, render_template, request, abort, make_response
 from flask_script import Manager
-from flask import request
-from flask import make_response
-from flask import redirect
-from flask import abort
 
 app = Flask(__name__)
 manager = Manager(app)
@@ -12,14 +9,14 @@ manager = Manager(app)
 def index():
 #     user_agent = request.headers.get('User-Agent')
     content = ""
-    for k,v in request.headers:
+    for k, v in request.headers:
         content += k +":"+ v +"<br>"
-    return render_template("index.html") 
+    return render_template("index.html", title='Index')
 
 @app.route('/make')
 def make():
     response = make_response('<h1>This response carries a cookie.</h1>')
-    response.set_cookie('name','Michael Yan')
+    response.set_cookie('name', 'Michael Yan')
     return response
 
 @app.route('/abort')
