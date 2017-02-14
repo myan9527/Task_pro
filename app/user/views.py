@@ -7,23 +7,6 @@ from ..models import User
 from .forms import LoginForm, RegistrationForm, ChangePasswordForm,\
     PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
 
-@user.before_app_request
-def before_request():
-    if current_user.is_authenticated \
-            and not current_user.confirmed \
-            and request.endpoint \
-            and request.endpoint[:5] != 'auth.' \
-            and request.endpoint != 'static':
-        return redirect(url_for('user.unconfirmed'))
-
-
-@user.route('/unconfirmed')
-def unconfirmed():
-    if current_user.is_anonymous or current_user.confirmed:
-        return redirect(url_for('main.index'))
-    return render_template('user/unconfirmed.html')
-
-
 @user.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -31,6 +14,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
+            user.update_login()
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password.')
     return render_template('user/login.html', form=form)
@@ -53,10 +37,7 @@ def register():
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()
-        # token = user.generate_confirmation_token()
-        # send_email(user.email, 'Confirm Your Account',
-        #            'auth/email/confirm', user=user, token=token)
-        # flash('A confirmation email has been sent to you by email.')
+        flash('Success!')
         return redirect(url_for('user.login'))
     return render_template('user/register.html', form=form)
 
