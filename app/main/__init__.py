@@ -4,4 +4,4 @@ main = Blueprint('main', __name__)
 
 from . import views, errors
 
-main.register_error_handler = errors
+# main.register_error_handler = errors
