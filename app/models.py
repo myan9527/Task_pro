@@ -1,5 +1,6 @@
 from . import db, login_manager
 from flask_login import UserMixin
+from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(UserMixin, db.Model):
@@ -8,6 +9,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique = True, index = True)
     password_hash = db.Column(db.String(128))
+    last_login = db.Column(db.DateTime(), default = func.now())
 
     @property
     def password(self):
@@ -19,6 +21,10 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def update_login(self):
+        self.last_login = func.now()
+        db.session.add(self)
 
     def __repr__(self):
         return '<User %r>' % self.username
