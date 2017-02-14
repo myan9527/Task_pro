@@ -1,20 +1,26 @@
 from . import main
 from flask import render_template, request, abort, make_response
 
-@main.route('/')
+@main.route('/', methods = ['GET'])
 def index():
-#     user_agent = request.headers.get('User-Agent')
-    content = ""
-    for k, v in request.headers:
-        content += k +":"+ v +"<br>"
     return render_template("index.html", title='Index')
 
-@main.route('/make')
-def make():
-    response = make_response('<h1>This response carries a cookie.</h1>')
-    response.set_cookie('name', 'Michael Yan')
-    return response
+@main.route('/login', methods = ['GET'])
+def login():
+    return render_template("login.html", title='Login')
 
+@main.route('/login', methods = ['POST'])
+def pro_login():
+    # check user exist or not
+
+    # add to db
+
+    # add to session
+
+    # load basic data
+
+    # return success
+    return render_template("dashboard.html", title = '')
 @main.route('/abort')
 def red():
     abort(503)
