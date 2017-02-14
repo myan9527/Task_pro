@@ -1,5 +1,7 @@
 /.project
 /.pydevproject
 /.vscode
+/*.db
+/*.sqlite
 /*.log
 __pycache__/

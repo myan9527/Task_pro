@@ -1,3 +1,5 @@
+*A simple task management tool.*
+
 #Build with:
 - Flask
 - Bootstrap
