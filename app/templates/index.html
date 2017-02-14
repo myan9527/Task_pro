@@ -1,9 +1,7 @@
-{% extends 'base.html' %}
-{% block resource %}
-<script src="/static/js/jquery-2.1.1.js"></script>
-{% endblock %}
+{% extends "base.html" %}
 
-{% block body %}
-	<nav ></nav>
-	<a href="/login">Login</a> <a href="/signup">Signup</a>
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+</div>
 {% endblock %}
