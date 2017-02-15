@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <h2>Dashboard for {{current_user.username}}</h2>
+    {% for v in a %}
+        <li>{{v}}</li>
+    {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}

@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, login_required, \
     current_user
 from . import user
 from .. import db
-from ..models import User
+from ..models import User, Task
 from .forms import LoginForm, RegistrationForm, ChangePasswordForm,\
     PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
 
@@ -15,9 +15,28 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
             user.update_login()
-            return redirect(request.args.get('next') or url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('user.dashboard'))
         flash('Invalid username or password.')
     return render_template('user/login.html', form=form)
+
+@user.route('/profile', methods=['GET','POST'])
+def profile():
+    if not current_user.is_authenticated:
+        flash('Please login first.')
+        return redirect(url_for('user.login'))
+    else:
+        tasks = Task.get_tasks(current_user.get_id())
+        return render_template('user/profile.html', user = current_user)
+
+@user.route('/dashboard', methods = ['GET'])
+def dashboard():
+    if current_user.is_authenticated:
+        # load basic data here
+        v = [1,2,3]
+        return render_template('user/dashboard.html',a = v)
+    else:
+        flash('Please login first.')
+        return redirect(url_for('user.login'))
 
 
 @user.route('/logout')
@@ -40,28 +59,6 @@ def register():
         flash('Success!')
         return redirect(url_for('user.login'))
     return render_template('user/register.html', form=form)
-
-
-@user.route('/confirm/<token>')
-@login_required
-def confirm(token):
-    if current_user.confirmed:
-        return redirect(url_for('main.index'))
-    if current_user.confirm(token):
-        flash('You have confirmed your account. Thanks!')
-    else:
-        flash('The confirmation link is invalid or has expired.')
-    return redirect(url_for('main.index'))
-
-
-@user.route('/confirm')
-@login_required
-def resend_confirmation():
-    # token = current_user.generate_confirmation_token()
-    # send_email(current_user.email, 'Confirm Your Account',
-    #            'auth/email/confirm', user=current_user, token=token)
-    # flash('A new confirmation email has been sent to you by email.')
-    return redirect(url_for('main.index'))
 
 
 @user.route('/change-password', methods=['GET', 'POST'])
@@ -109,36 +106,7 @@ def password_reset(token):
             return redirect(url_for('main.index'))
         if user.reset_password(token, form.password.data):
             flash('Your password has been updated.')
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('user.login'))
         else:
             return redirect(url_for('main.index'))
     return render_template('user/reset_password.html', form=form)
-
-
-@user.route('/change-email', methods=['GET', 'POST'])
-@login_required
-def change_email_request():
-    form = ChangeEmailForm()
-    # if form.validate_on_submit():
-    #     if current_user.verify_password(form.password.data):
-    #         new_email = form.email.data
-    #         token = current_user.generate_email_change_token(new_email)
-    #         send_email(new_email, 'Confirm your email address',
-    #                    'auth/email/change_email',
-    #                    user=current_user, token=token)
-    #         flash('An email with instructions to confirm your new email '
-    #               'address has been sent to you.')
-    #         return redirect(url_for('main.index'))
-    #     else:
-    #         flash('Invalid email or password.')
-    return render_template("user/change_email.html", form=form)
-
-
-@user.route('/change-email/<token>')
-@login_required
-def change_email(token):
-    if current_user.change_email(token):
-        flash('Your email address has been updated.')
-    else:
-        flash('Invalid request.')
-    return redirect(url_for('main.index'))

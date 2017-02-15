@@ -6,6 +6,7 @@
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock %}
 
 {% block navbar %}
@@ -18,24 +19,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">Flasky</a>
+            <!--will be replaced by image-->
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">Task_pro</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('main.index') }}">Home</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{current_user.username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('user.profile') }}">View Profile</a></li>
                         <li><a href="{{ url_for('user.change_password') }}">Change Password</a></li>
-                        <li><a href="{{ url_for('user.change_email_request') }}">Change Email</a></li>
                         <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
                     </ul>
                 </li>
                 {% else %}
                 <li><a href="{{ url_for('user.login') }}">Log In</a></li>
+                <li><a href="{{ url_for('user.register') }}">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -51,12 +51,16 @@
         {{ message }}
     </div>
     {% endfor %}
-
-    {% block page_content %}{% endblock %}
+    <div class="row">
+        {% block page_content %}{% endblock %}
+    </div>
+    
+    <footer>
+        Powered by <a href="http://flask.pocoo.org/" target="_blank">Flask</a> 
+    </footer>
 </div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
-{{ moment.include_moment() }}
 {% endblock %}
