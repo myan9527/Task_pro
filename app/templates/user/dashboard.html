@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    {% if current_user.is_authenticated %}
+    <h2>Dashboard for {{current_user.username}}</h2>
+    {% for v in a %}
+        <li>{{v}}</li>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
