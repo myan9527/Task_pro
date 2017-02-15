@@ -19,6 +19,15 @@ def login():
         flash('Invalid username or password.')
     return render_template('user/login.html', form=form)
 
+@user.route('/profile', methods=['GET','POST'])
+def profile():
+    if not current_user.is_authenticated:
+        flash('Please login first.')
+        return redirect(url_for('user.login'))
+    else:
+        tasks = Task.get_tasks(current_user.get_id())
+        return render_template('user/profile.html', user = current_user)
+
 @user.route('/dashboard', methods = ['GET'])
 def dashboard():
     if current_user.is_authenticated:

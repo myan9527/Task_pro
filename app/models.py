@@ -40,3 +40,12 @@ class Task(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, primary_key=True)
     taskname = db.Column(db.String)
+    user_id = db.Column(db.Integer)
+    status = db.Column(db.Integer, default = 1)
+    progress = db.Column(db.Float)
+    due_date = db.Column(db.DateTime())
+
+    def get_tasks(user_id):
+        result = []
+        Task.query.get(user_id)
+        return result

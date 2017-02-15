@@ -6,6 +6,7 @@
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% endblock %}
 
 {% block navbar %}
@@ -27,7 +28,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{current_user.username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">View Profile</a></li>
+                        <li><a href="{{ url_for('user.profile') }}">View Profile</a></li>
                         <li><a href="{{ url_for('user.change_password') }}">Change Password</a></li>
                         <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
                     </ul>
@@ -50,12 +51,16 @@
         {{ message }}
     </div>
     {% endfor %}
-
-    {% block page_content %}{% endblock %}
+    <div class="row">
+        {% block page_content %}{% endblock %}
+    </div>
+    
+    <footer>
+        Powered by <a href="http://flask.pocoo.org/" target="_blank">Flask</a> 
+    </footer>
 </div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
-{{ moment.include_moment() }}
 {% endblock %}
