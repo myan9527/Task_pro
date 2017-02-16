@@ -40,12 +40,23 @@ class Task(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, primary_key=True)
     taskname = db.Column(db.String)
-    user_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     status = db.Column(db.Integer, default = 1)
     progress = db.Column(db.Float)
     due_date = db.Column(db.DateTime())
+    creat_at = db.Column(db.DateTime(), default = func.now())
+    describtion = db.Column(db.String)
+    task_type = db.column(db.Integer, db.ForeignKey('tasktype.id'))
 
     def get_tasks(user_id):
         result = []
         Task.query.get(user_id)
         return result
+
+class TaskType(db.Model):
+    __tablename__ = 'tasktype'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+
+    def get_all():
+        return TaskType.query.get()
