@@ -4,8 +4,7 @@ from flask_login import login_user, logout_user, login_required, \
 from . import user
 from .. import db
 from ..models import User, Task
-from .forms import LoginForm, RegistrationForm, ChangePasswordForm,\
-    PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
+from .forms import *
 
 @user.route('/login', methods=['GET', 'POST'])
 def login():
@@ -26,7 +25,7 @@ def profile():
         return redirect(url_for('user.login'))
     else:
         tasks = Task.get_tasks(current_user.get_id())
-        return render_template('user/profile.html', user = current_user)
+        return render_template('user/profile.html', user = current_user, tasks = tasks)
 
 @user.route('/dashboard', methods = ['GET'])
 def dashboard():
@@ -110,3 +109,9 @@ def password_reset(token):
         else:
             return redirect(url_for('main.index'))
     return render_template('user/reset_password.html', form=form)
+
+# task view
+@user.route('/newtask', methods = ['GET', 'POST'])
+def newtask():
+    form = NewTaskCreateForm()
+    return render_template('task/newtask.html', form = form)
