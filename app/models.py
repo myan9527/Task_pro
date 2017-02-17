@@ -48,9 +48,9 @@ class Task(db.Model):
     describtion = db.Column(db.String)
     task_type = db.column(db.Integer, db.ForeignKey('tasktype.id'))
 
-    def get_tasks(user_id):
+    def get_tasks(id):
         result = []
-        Task.query.get(user_id)
+        Task.query.filter(Task.user_id == id)
         return result
 
 class TaskType(db.Model):
