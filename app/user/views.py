@@ -25,7 +25,7 @@ def profile():
         return redirect(url_for('user.login'))
     else:
         tasks = Task.get_tasks(current_user.get_id())
-        return render_template('user/profile.html', user = current_user)
+        return render_template('user/profile.html', user = current_user, tasks = tasks)
 
 @user.route('/dashboard', methods = ['GET'])
 def dashboard():
