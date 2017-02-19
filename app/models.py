@@ -52,6 +52,9 @@ class Task(db.Model):
         result = []
         Task.query.filter(Task.user_id == id)
         return result
+    
+    def get_task_byid(id):
+        return Task.query.get(id)
 
 class TaskType(db.Model):
     __tablename__ = 'tasktype'
