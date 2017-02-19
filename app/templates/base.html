@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{ url_for('main.index') }}">
-                <img src="{{ url_for('static', filename='icon.ico')}}">
+                <img src="{{ url_for('static', filename='icon.ico')}}" class="img-circle">
                 Task_pro
             </a>
         </div>
@@ -48,22 +48,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning col-md-4 col-md-offset-4">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
-    </div>
-    {% endfor %}
-
     {% block page_content %}{% endblock %}
-    
-    <div class="row">
-        <footer class="footer">
-            <div class="container">
-                <p>Powered by <a href="http://flask.pocoo.org/" target="_blank">Flask</a></p>
-            </div>
-        </footer>
-    </div>
 </div>
 {% endblock %}
 

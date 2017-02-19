@@ -6,19 +6,15 @@ body {
   color: #5a5a5a;
   margin-top: 60px;
 }
-a:hover {
-  color: seagreen;
-}
+/*NAV BAR*/
 .navbar {
   height: 60px;
   min-height: 60px 
 }
-/*brand logo style*/
 .navbar-brand > img {
-  height: 30px;
-  display: inline;
+  height: 32px;
   margin-right: 3px;
-  border-radius: 50% 50%;
+  display: inline;
 }
 /* CUSTOMIZE THE CAROUSEL */
 .carousel {
@@ -26,6 +22,7 @@ a:hover {
 }
 .carousel-caption {
   z-index: 10;
+  vertical-align: center;
 }
 
 .carousel .item {
@@ -51,7 +48,7 @@ a:hover {
 /*FOOTER STYLE*/
 .footer {
   position: absolute;
-  bottom: 0;
+  /*bottom: 0;*/
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 40px;
