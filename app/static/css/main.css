@@ -1,26 +1,28 @@
 /*GLOBAL STYLE*/
 *{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
   color: #5a5a5a;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 a:hover {
   color: seagreen;
 }
-nav {
-  background-color: #CCC;
+.navbar {
+  height: 60px;
+  min-height: 60px 
 }
 /*brand logo style*/
-.navbar-header > a > img {
-  height: 50px;
-  /*border-radius: 50% 50%;*/
+.navbar-brand > img {
+  height: 30px;
+  display: inline;
+  margin-right: 3px;
+  border-radius: 50% 50%;
 }
 /* CUSTOMIZE THE CAROUSEL */
 .carousel {
   height: 300px;
-  margin-bottom: 10px; 
 }
 .carousel-caption {
   z-index: 10;
@@ -37,7 +39,15 @@ nav {
   min-width: 100%;
   height: 300px;
 }
-
+.newsbar {
+    background-color: #eee;
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
 /*FOOTER STYLE*/
 .footer {
   position: absolute;
@@ -45,6 +55,6 @@ nav {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 40px;
-  background-color: #f5f5f5;
+  background-color: #eee;
   padding: 10px 15px;
 }
