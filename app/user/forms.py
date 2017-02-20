@@ -15,7 +15,7 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[Required(), Length(1, 64),
                                            Email()])
-    username = StringField('Username', validators=[
+    username = StringField('Name', validators=[
         Required(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
                                           'Usernames must have only letters, '
                                           'numbers, dots or underscores')])
@@ -77,3 +77,6 @@ class NewTaskCreateForm(FlaskForm):
 
     submit = SubmitField('Create') 
 
+class UserProfileForm(FlaskForm):
+    name = StringField('Name', validators = [Required(), Length(1, 64)])
+    email = StringField('Email', validators = [Required(),Email()])

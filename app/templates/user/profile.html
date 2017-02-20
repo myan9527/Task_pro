@@ -1,9 +1,54 @@
 {% extends 'base.html' %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="row">
-
-
+<div class="container" style="margin-top: 10px; ">
+    <div class="row">
+        <div class="col-xs-2">
+            <dl class="avatar-container">
+                <dt>
+                    <label>Profile picture</label>
+                </dt>
+                <dd>
+                    <img class="img-rounded img-thumbnail" src="{{ user.gravatar(size=180) }}">
+                    <div class="upload-btn">
+                        <lable data-toggle="modal" data-target="#myModal"> Update picture
+                        </lable>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="col-xs-7">
+            <div class="page-header">
+                <h1>Pulic Profile</h1>
+             </div>
+            {{wtf.quick_form(form)}}
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Crop your new profile picture</h4>
+        </div>
+        <div class="modal-body">
+            <input type="file" onchange="return file_selected()">
+            <!--dragable area-->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-info">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!--ends modal-->
 </div>
+{% endblock %}
+
+{% block scripts%}
+{{ super() }}
+<script src="{{url_for('static',filename='js/lib.js')}}"></script>
 {% endblock %}
