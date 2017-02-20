@@ -6,6 +6,12 @@
     <div class="page-header">
         <h1>Login</h1>
     </div>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning" style="margin-bottom:0px; ">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
     {{ wtf.quick_form(form) }}
     <br>
     <p>Forgot your password? <a href="{{ url_for('user.password_reset_request') }}">Click here to reset it</a>.</p>

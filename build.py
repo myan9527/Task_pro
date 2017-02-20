@@ -21,17 +21,17 @@ def db_init():
     if os.path.exists('./migrations'):
         if sysstr == 'Windows':
             os.popen('rd /s/q migrations')
+            os.system('python start.py clear')
         elif sysstr == 'Linux':
             os.popen('rm -rf migrations')
-    os.system('python start.py clear')
     os.system('python start.py db init')
     os.system('python start.py db migrate')
     os.system('python start.py db upgrade')
     print('----------------A sqlite database has been inintialized.')
 
 def start_server():
-    print('----------------Start applicaton in product mode...')
-    os.system('python start.py runserver')
+    print('----------------Start applicaton in production mode...')
+    os.system('python start.py runserver --host 0.0.0.0')
 
 if __name__ == "__main__":
     pip_install()

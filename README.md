@@ -3,6 +3,7 @@
 #Build with:
 - Python 3.x 
 - Flask
+- Jinja
 - Bootstrap
 - Sqllite
 
