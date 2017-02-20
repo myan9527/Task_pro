@@ -23,7 +23,7 @@ def db_init():
             os.popen('rd /s/q migrations')
         elif sysstr == 'Linux':
             os.popen('rm -rf migrations')
-    task = ['db init','db migrate','clear','db upgrade']
+    task = ['db init','clear','db migrate','db upgrade']
     for t in task:
         task_cmd = 'python start.py '+t
         os.system(task_cmd)
