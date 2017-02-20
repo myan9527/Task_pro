@@ -43,7 +43,11 @@ body {
     padding: 25px 0;
     font-size: 24px;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+.poster-img{
+  display: inline;
+  height: 240px;
 }
 /*FOOTER STYLE*/
 .footer {

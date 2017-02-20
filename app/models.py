@@ -63,3 +63,14 @@ class TaskType(db.Model):
 
     def get_all():
         return TaskType.query.get()
+
+class Alembic(db.Model):
+    __tablename__ = 'alembic_version'
+    version_num = db.Column(db.String(32), primary_key = True,nullable=False)
+
+    @staticmethod
+    def clear_version():
+        for a in Alembic.query.all():
+            db.session.delete(a)
+        db.session.commit()   
+        print('----------------Alembic versions has been cleared.')
