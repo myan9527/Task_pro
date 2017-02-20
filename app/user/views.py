@@ -25,14 +25,16 @@ def profile():
         return redirect(url_for('user.login'))
     else:
         tasks = Task.get_tasks(current_user.get_id())
-        return render_template('user/profile.html', user = current_user, tasks = tasks)
+        form = UserProfileForm()
+        form.name.default = current_user.username
+        return render_template('user/profile.html', user = current_user, tasks = tasks, form = form)
 
 @user.route('/dashboard', methods = ['GET'])
 def dashboard():
     if current_user.is_authenticated:
         # load basic data here
         v = [1,2,3]
-        return render_template('user/dashboard.html',a = v)
+        return render_template('user/dashboard.html',a = v, user = current_user)
     else:
         flash('Please login first.')
         return redirect(url_for('user.login'))
@@ -42,7 +44,6 @@ def dashboard():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.')
     return redirect(url_for('main.index'))
 
 

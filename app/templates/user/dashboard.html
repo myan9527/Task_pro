@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-    <h2>Dashboard for {{current_user.username}}</h2>
+<div class="container">
+    <h2>My Dashboard {{current_user.username}}</h2>
+    <p>
+        
+    </p>
     {% for v in a %}
         <li>{{v}}</li>
     {% endfor %}
     <a href="{{ url_for('user.newtask')}}">New Task</a>
+</div>
 {% endblock %}
 
 {% block scripts %}

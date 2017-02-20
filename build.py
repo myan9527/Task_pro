@@ -21,12 +21,12 @@ def db_init():
     if os.path.exists('./migrations'):
         if sysstr == 'Windows':
             os.popen('rd /s/q migrations')
-            os.system('python start.py clear')
         elif sysstr == 'Linux':
             os.popen('rm -rf migrations')
-    os.system('python start.py db init')
-    os.system('python start.py db migrate')
-    os.system('python start.py db upgrade')
+    task = ['db init','db migrate','clear','db upgrade']
+    for t in task:
+        task_cmd = 'python start.py '+t
+        os.system(task_cmd)
     print('----------------A sqlite database has been inintialized.')
 
 def start_server():

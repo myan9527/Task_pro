@@ -5,6 +5,7 @@
 body {
   color: #5a5a5a;
   margin-top: 60px;
+  min-width: 1100px;
 }
 /*NAV BAR*/
 .navbar {
@@ -58,4 +59,25 @@ body {
   height: 40px;
   background-color: #eee;
   padding: 10px 15px;
+}
+/*USER PROFILE*/
+.profile-form {
+  margin-left: 10px; 
+}
+.avatar-container {
+  display: table;
+  clear: both;
+}
+.upload-btn{
+  margin: 5px auto;
+  width: inherit;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px 12px;
+  min-width: 120px;
+  font-size: 14px;
+  height: 36px;
+  border: 0.8px solid rgb(213, 213, 213);
 }
