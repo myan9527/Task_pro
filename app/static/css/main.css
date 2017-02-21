@@ -1,6 +1,6 @@
 /*GLOBAL STYLE*/
 *{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
   color: #5a5a5a;
@@ -20,7 +20,7 @@ body {
 }
 /* CUSTOMIZE THE CAROUSEL */
 .carousel {
-  height: 300px;
+  height: 340px;
 }
 .carousel-caption {
   z-index: 10;
@@ -32,7 +32,7 @@ body {
   font-size: 48px;
 }
 .carousel .item {
-  height: 300px;
+  height: 340px;
   background-color: #777;
 }
 .carousel-inner > .item > img {
@@ -40,7 +40,7 @@ body {
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 300px;
+  height: 340px;
 }
 .newsbar {
     background-color: #eee;
@@ -60,7 +60,6 @@ body {
   position: absolute;
   /*bottom: 0;*/
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 40px;
   background-color: #eee;
   padding: 10px 15px;
