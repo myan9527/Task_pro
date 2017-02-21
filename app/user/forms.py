@@ -74,6 +74,7 @@ class NewTaskCreateForm(FlaskForm):
     taskname = StringField('Task Name', validators = [Required(), Length(1, 64)])
     describtion = TextAreaField('Describtion')
     # task_type = SelectField('Task type', validators=None, coerce=, choices=['a','b','c'] )
+    duedate = DateField("Planned Finish Date", validators = [Required()])
 
     submit = SubmitField('Create') 
 

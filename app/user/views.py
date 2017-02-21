@@ -20,6 +20,7 @@ def login():
     return render_template('user/login.html', form=form)
 
 @user.route('/profile', methods=['GET','POST'])
+@login_required
 def profile():
     if not current_user.is_authenticated:
         flash('Please login first.')
@@ -30,6 +31,7 @@ def profile():
         return render_template('user/profile.html', user = current_user, form = form)
 
 @user.route('/dashboard', methods = ['GET'])
+@login_required
 def dashboard():
     if current_user.is_authenticated:
         # load basic data here

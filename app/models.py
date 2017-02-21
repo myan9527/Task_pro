@@ -80,14 +80,6 @@ class Task(db.Model):
         db.session.add(task)
         db.session.commit()
 
-class TaskType(db.Model):
-    __tablename__ = 'tasktype'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-
-    def get_all():
-        return TaskType.query.get()
-
 class Alembic(db.Model):
     __tablename__ = 'alembic_version'
     version_num = db.Column(db.String(32), primary_key = True,nullable=False)
