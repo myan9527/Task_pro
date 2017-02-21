@@ -5,7 +5,7 @@
 - Flask
 - Jinja
 - Bootstrap
-- Sqllite
+- Sqlite
 
 **How to build Task_pro?**
 - Make sure your machine have installed python3 with latest pip.

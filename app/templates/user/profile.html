@@ -34,12 +34,12 @@
             <h4 class="modal-title" id="myModalLabel">Crop your new profile picture</h4>
         </div>
         <div class="modal-body">
-            <input type="file" onchange="return file_selected()">
+            <input type="file" onchange="return file_selected(this)">
             <!--dragable area-->
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-info">Save changes</button>
+            <button type="button" class="btn btn-info" onclick="return save_avatar()">Save changes</button>
         </div>
         </div>
     </div>

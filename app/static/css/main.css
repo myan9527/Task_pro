@@ -10,7 +10,8 @@ body {
 /*NAV BAR*/
 .navbar {
   height: 60px;
-  min-height: 60px 
+  min-height: 60px ;
+  color: rgb(213, 213, 213);
 }
 .navbar-brand > img {
   height: 32px;
@@ -59,6 +60,13 @@ body {
   height: 40px;
   background-color: #eee;
   padding: 10px 15px;
+}
+/*FEATURE SECTION*/
+.feature-section {
+  margin: 25px 0 20px 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-align: center;
 }
 /*USER PROFILE*/
 .profile-form {
