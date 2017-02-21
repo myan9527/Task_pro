@@ -8,3 +8,7 @@ function file_selected(element){
     //load this file in a modal dialog
     var imgDragArea = `<div class="modal fade" ></div>`
 }
+
+function save_avatar(){
+    
+}
