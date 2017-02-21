@@ -21,5 +21,11 @@ def test():
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
+@manager.command
+def clear():
+    from flask_migrate import upgrade
+    from app.models import Alembic
+    Alembic.clear_version()
+
 if __name__ == '__main__':
     manager.run()   
