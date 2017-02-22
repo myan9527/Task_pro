@@ -53,16 +53,23 @@ body {
 }
 .poster-img{
   display: inline;
-  height: 240px;
+  /*height: 260px;*/
+  width: inherit;
+  margin: 0 auto;
 }
 /*FOOTER STYLE*/
 .footer {
   position: absolute;
   /*bottom: 0;*/
   width: 100%;
+  min-width: 450px;
   height: 40px;
   background-color: #eee;
   padding: 10px 15px;
+}
+.poster-section{
+  font-size: 18px;
+  font-style: oblique;
 }
 /*FEATURE SECTION*/
 .feature-section {

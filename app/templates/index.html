@@ -59,13 +59,13 @@
     <div class="col-md-4 col-xs-6 col-lg-4 col-md-offset-2">
         <p>
             <img src="{{url_for('static',filename='img/poster1.png')}}" alt="Poster" class="img-thumbnail poster-img">
-            Some content here.
+            <section class="poster-section">Always planning and always forgetting. Having trouble about what going todo next?</section>
         </p>
     </div>
     <div class="col-md-4 col-xs-6 col-lg-4">
         <p>
             <img src="{{url_for('static',filename='img/poster2.png')}}" alt="Poster" class="img-thumbnail poster-img"/>
-            Some other content here.
+            <section class="poster-section">It's time to track your schedule, not only for getting things done, but also for self-improvement.</section>
         </p>
     </div>
 </div>
@@ -74,11 +74,18 @@
 <div class="row feature-section">
     <div class="col-md-8 col-xs-8 col-lg-8 col-md-offset-2">
         <hr>
-        <h1><i class="fa fa-github"></i>&nbsp;&nbsp;Open Source</h1>
-        <p>Everything on <b><a href="https://github.com" target="_blank">Github</a></b>. Anyone can make changes to the source code and adjust to your own version.</p>
-        <h1><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;Personal Data</h1>
-        <p>Customize your personal statistics, track your schedule timely.</p>
-        <p></p>
+        <div class="col-md-4 col-xs-4">
+            <h1><i class="fa fa-github"></i>&nbsp;&nbsp;Open Source</h1>
+            <p>Everything on <b><a href="https://github.com" target="_blank">Github</a></b>. Anyone can make changes to the source code and adjust to your own version.</p>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <h1><i class="fa fa-superpowers"></i>&nbsp;&nbsp;Effective Track</h1>
+            <p>Track your schedule timely, always catch you up.</p>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <h1><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;Personal Data</h1>
+            <p>Customize your personal statistics, know clearly about task status.</p>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -86,7 +93,7 @@
         <div class="container">
             <p>Powered by <a href="http://flask.pocoo.org/" target="_blank">Flask</a>&nbsp;
                 & <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
-                <span class="pull-right">&copy;Author Michael Yan(2017)</span>
+                <span class="pull-right">&copy;Michael Yan(2017)</span>
             </p>
         </div>
     </footer>
