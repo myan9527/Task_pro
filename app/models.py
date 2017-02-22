@@ -68,7 +68,7 @@ class Task(db.Model):
     due_date = db.Column(db.DateTime())
     create_at = db.Column(db.DateTime(), default = func.now())
     describtion = db.Column(db.String)
-    task_type = db.column(db.String)
+    typename = db.column(db.String)
     priority = db.Column(db.String)
 
     def get_tasks(id):
