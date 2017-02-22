@@ -37,6 +37,10 @@ class User(UserMixin, db.Model):
         hash = hashlib.md5(self.email.encode('UTF-8')).hexdigest()
         return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(url=url, hash=hash, size=size, default=default, rating=rating)
 
+    def add(user):
+        db.session.add(user)
+        db.session.commit()
+
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -54,7 +58,7 @@ class Task(db.Model):
     status = db.Column(db.Integer, default = 1)
     progress = db.Column(db.Float)
     due_date = db.Column(db.DateTime())
-    creat_at = db.Column(db.DateTime(), default = func.now())
+    create_at = db.Column(db.DateTime(), default = func.now())
     describtion = db.Column(db.String)
     task_type = db.column(db.Integer, db.ForeignKey('tasktype.id'))
 
@@ -66,13 +70,15 @@ class Task(db.Model):
     def get_task_byid(id):
         return Task.query.get(id)
 
-class TaskType(db.Model):
-    __tablename__ = 'tasktype'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    def statistics(tasks):
+        result = {}
+        # for t in tasks:
+        #     result['type'] = 
+        return result
 
-    def get_all():
-        return TaskType.query.get()
+    def add(task):
+        db.session.add(task)
+        db.session.commit()
 
 class Alembic(db.Model):
     __tablename__ = 'alembic_version'
