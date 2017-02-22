@@ -1,12 +1,12 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-
+TASK_TYPES = ['Work issue','Family issue','Self improvement','Social activity','Other staff']
+LOGGING_FORMAT = '%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s'
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-    TASK_TYPES = ['Work issue','Family issue','Self improvement','Social activity','Other staff']
-
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
     @staticmethod
     def init_app(app):
         pass

@@ -2,7 +2,7 @@
 import platform,os
 
 sysstr = platform.system()
-os.putenv('FLASK_CONFIG','production')
+os.putenv('FLASK_CONFIG','development')
 
 # build script for linux & windows.
 def pip_install():
@@ -23,7 +23,7 @@ def db_init():
             os.popen('rd /s/q migrations')
         elif sysstr == 'Linux':
             os.popen('rm -rf migrations')
-    task = ['db init','clear','db migrate','db upgrade']
+    task = ['db init','db migrate','db upgrade','clear']
     for t in task:
         task_cmd = 'python start.py '+t
         os.system(task_cmd)

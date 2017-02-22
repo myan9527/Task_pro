@@ -1,11 +1,17 @@
 from . import db, login_manager
-import hashlib
+import hashlib, logging
 from flask import request
 from flask_login import UserMixin
 from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
+from config import LOGGING_FORMAT
 
-
+logging.basicConfig(level=logging.DEBUG,
+    format=LOGGING_FORMAT,
+    datefmt='%d %b %Y %H:%M:%S',
+    filename='app_log.log',
+    filemode='w'
+)
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -40,6 +46,7 @@ class User(UserMixin, db.Model):
     def add(user):
         db.session.add(user)
         db.session.commit()
+        logging.debug('user information has been saved.')
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -60,14 +67,14 @@ class Task(db.Model):
     due_date = db.Column(db.DateTime())
     create_at = db.Column(db.DateTime(), default = func.now())
     describtion = db.Column(db.String)
-    task_type = db.column(db.Integer, db.ForeignKey('tasktype.id'))
+    task_type = db.column(db.String)
 
     def get_tasks(id):
-        result = []
-        Task.query.filter(Task.user_id == id)
-        return result
+        logging.debug('load current user tasks: %d',id)
+        return Task.query.filter(Task.user_id == id)
     
     def get_task_byid(id):
+        logging.debug('load task by id: %d',id)
         return Task.query.get(id)
 
     def statistics(tasks):
