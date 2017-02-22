@@ -2,14 +2,37 @@
 
 {% block page_content %}
 <div class="container">
-    <h2>My Dashboard {{current_user.username}}</h2>
-    <p>
-        
-    </p>
-    {% for v in tasks %}
-        <li>{{v}}</li>
-    {% endfor %}
-    <a href="{{ url_for('user.newtask')}}">New Task</a>
+    <div class="row">
+        <h2>My Dashboard</h2>
+        <a href="{{ url_for('user.newtask')}}">New Task</a>
+    </div>
+    <!--Task list-->
+    <div class="row">
+        <div class="col-xs-9">
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Planned Date</th>
+                <th>Priority</th>
+            </tr>
+            {% for v in tasks %}
+            <tr>
+                <td>{{v.task_type}}</td>
+                <td>{{v.taskname}}</td>
+                <td>{{v.status}}</td>
+                <td>{{v.due_date}}</td>
+                <td>{{v.priority}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+        <!--Calendar section-->
+        <div class="col-xs-3">
+
+        </div>
+    </div>
 </div>
 {% endblock %}
 

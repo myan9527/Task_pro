@@ -28,5 +28,4 @@ def clear():
     Alembic.clear_version()
 
 if __name__ == '__main__':
-    print('Serve on port: 5000') 
     manager.run()

@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True, index=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
+    avatar_hash = db.Column(db.String)
     last_login = db.Column(db.DateTime(), default=func.now())
 
     @property
@@ -68,10 +69,11 @@ class Task(db.Model):
     create_at = db.Column(db.DateTime(), default = func.now())
     describtion = db.Column(db.String)
     task_type = db.column(db.String)
+    priority = db.Column(db.String)
 
     def get_tasks(id):
         logging.debug('load current user tasks: %d',id)
-        return Task.query.filter(Task.user_id == id)
+        return Task.query.filter(Task.user_id == id).order_by(Task.due_date)
     
     def get_task_byid(id):
         logging.debug('load task by id: %d',id)
