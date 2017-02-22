@@ -32,6 +32,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{current_user.username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url_for('user.dashboard') }}">My Dashboard</a></li>
+                        <li><a href="{{ url_for('user.surroundings')}}">Surroundings</a></li>
                         <li><a href="{{ url_for('user.profile') }}">View Profile</a></li>
                         <li><a href="{{ url_for('user.change_password') }}">Change Password</a></li>
                         <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>

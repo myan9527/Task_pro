@@ -92,5 +92,16 @@ def newtask():
     return render_template('task/newtask.html', form = form)
 
 @user.route('/taskdetail', methods = ['GET','POST'])
+@login_required
 def taskdetail(task):
     return render_template('task/taskdetail',task = task)
+
+@user.route('/surroundings',methods = ['GET','POST'])
+@login_required
+def surroundings():
+    if current_user.is_authenticated :
+        # do pagination staff
+        return render_template('task/surroundings.html')
+    else:
+        flash('Please login first.')
+        return redirect('user.login')
