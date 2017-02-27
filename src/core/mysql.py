@@ -159,9 +159,8 @@ class ModelMetaclass(type):
                 else:
                     fields.append(k)
  
-        if not primaryKey:
-            raise RuntimeError('Primary key not found!')
-        # w下面位字段从类属性中删除Field 属性
+#         if not primaryKey:
+#             raise RuntimeError('Primary key not found!')
         for k in mappings.keys():
             attrs.pop(k)
  

@@ -1,5 +1,5 @@
 import time, uuid
-from src.mysql import Model,StringField,BooleanField,FloatField
+from src.core.mysql import Model,StringField,BooleanField,FloatField
 
 def next_id():
     return '%015d%s000' % (int(time.time() * 1000), uuid.uuid4().hex)
@@ -14,3 +14,8 @@ class User(Model):
     avatar = StringField(ddl='varchar(500)')
     created_at = FloatField(default=time.time)
     last_login = FloatField(default=time.time)
+
+class Task(Model):
+    __table__ = 'tasks'
+    
+    id = StringField(primary_key=True, default=next_id, ddl='varchar(50)')

@@ -1,4 +1,4 @@
-from src.mysql import create_pool
+from src.core.mysql import create_pool
 from src.models import User
 import asyncio,sys
 
