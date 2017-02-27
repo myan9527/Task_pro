@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import asyncio,logging,aiomysql
@@ -159,8 +158,6 @@ class ModelMetaclass(type):
                 else:
                     fields.append(k)
  
-#         if not primaryKey:
-#             raise RuntimeError('Primary key not found!')
         for k in mappings.keys():
             attrs.pop(k)
  
